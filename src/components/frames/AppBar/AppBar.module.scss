@@ -1,0 +1,10 @@
+@use "../../styles/color/mainColors.scss" as mainColor;
+.wrapper {
+  display: flex;
+  gap: 20px;
+  position: sticky;
+  width: 100%;
+  height: 3rem;
+  background-color: mainColor.$main-color-4;
+  padding: 0.8em 2em;
+}

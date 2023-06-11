@@ -1,0 +1,38 @@
+@use "../../components/styles/color/mainColors.scss" as mainColor;
+@use "../../components/styles/templates/mainSizes.scss" as mainSize;
+.wrapper {
+  width: 100%;
+  padding: mainSize.$main-size-wrapper-padding;
+}
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+.form_wrapper {
+  width: 100%;
+}
+.form {
+  margin: 0 auto;
+}
+.input_container {
+  padding: 0.6em;
+  & label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 0.5em;
+  }
+  & input {
+    background-color: mainColor.$main-color-1;
+    width: 100%;
+    padding: 0.3em 0.7em;
+    font-size: 18px;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.register_link {
+  text-align: center;
+}
