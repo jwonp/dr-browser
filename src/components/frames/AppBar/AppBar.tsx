@@ -7,11 +7,14 @@ const AppBar = () => {
       <Link href={"/reservation"}>
         <div>Reservation</div>
       </Link>
-      <Link href={"login"}>
+      <Link href={"/login"}>
         <div>Login</div>
       </Link>
-      <Link href={"signup"}>
+      <Link href={"/signup"}>
         <div>Sign Up</div>
+      </Link>
+      <Link href={"/admin"}>
+        <div>Admin</div>
       </Link>
     </div>
   );
