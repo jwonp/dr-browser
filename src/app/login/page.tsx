@@ -1,40 +1,36 @@
 "use client";
 import styles from "@/app/login/page.module.scss";
+import FormInputBar from "@/components/form/FormInputBar/FormInputBar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+
 const Login = () => {
   const router = useRouter();
-  const $UserId = useRef<HTMLInputElement>(null);
-  const $UserPhone = useRef<HTMLInputElement>(null);
 
   return (
     <div className={`${styles.wrapper}`}>
       <div className={`${styles.container}`}>
         <div className={`${styles.form_wrapper}`}>
           <form className={`${styles.form}`}>
-            <div className={`${styles.input_container}`}>
-              <label htmlFor="login-id">ID</label>
-              <input
-                ref={$UserId}
-                id="login-id"
-                type={"text"}
-                required={true}
-                autoFocus={true}
-                placeholder={"User ID"}
-              />
-            </div>
-            <div className={`${styles.input_container}`}>
-              <label htmlFor="login-phone">Phone</label>
-              <input
-                ref={$UserPhone}
-                id="login-phone"
-                type={"tel"}
-                required={true}
-                placeholder={"010-1234-5678"}
-                pattern={"[0-9]{3}-[0-9]{3,4}-[0-9]{4}"}
-                maxLength={13}
-                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            <FormInputBar
+              label="User ID"
+              inputProps={{
+                id: "login-id",
+                type: "text",
+                required: true,
+                autoFocus: true,
+                placeholder: "User ID",
+              }}
+            />
+            <FormInputBar
+              inputProps={{
+                id: "login-phone",
+                type: "tel",
+                required: true,
+                placeholder: "010-1234-5678",
+                pattern: "[0-9]{3}-[0-9]{3,4}-[0-9]{4}",
+                maxLength: 13,
+                onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => {
                   if (e.key === "Backspace") {
                     return;
                   }
@@ -61,22 +57,28 @@ const Login = () => {
                     }${phoneNumber[7]}${phoneNumber.substring(9)}`;
                     e.currentTarget.value = newPhoneNumber;
                   }
-                }}
-              />
-            </div>
-            <div className={`${styles.input_container}`}>
-              <input
-                type={"submit"}
-                value={"Login"}
-                onClick={(e) => {
+                },
+              }}
+            />
+            <FormInputBar
+              inputProps={{
+                type: "submit",
+                value: "Login",
+                onClick: (e) => {
                   e.preventDefault();
-                  console.log(
-                    `id is ${$UserId.current?.value} phone is ${$UserPhone.current?.value}`
-                  );
+                  const userId = (
+                    document.getElementById("login-id") as HTMLInputElement
+                  ).value;
+                  const userPhone = (
+                    document.getElementById("login-phone") as HTMLInputElement
+                  ).value;
+                  console.log(`${userId} and ${userPhone}`);
+
                   router.push("/reservation");
-                }}
-              />
-            </div>
+                },
+              }}
+            />
+
             <div className={styles.register_link}>
               <Link href={"/signup"}>Click here to Sign up</Link>
             </div>
