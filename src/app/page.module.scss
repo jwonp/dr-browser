@@ -1,25 +1,32 @@
 .wrapper {
-  width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
-
-.image_container {
+.main {
+  min-height: 100%;
+}
+.CardContainer {
   position: relative;
   width: 100%;
-  height: 40%;
-  border: 1px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25%;
+  padding: 0 18.75%;
+  padding-bottom: 2%;
+  // overflow-y: hidden;
+}
 
-  & > div {
-    top: 33%;
-    left: 25%;
+/* 테블릿 세로 */
+@media all and (min-width: 361px) and (max-width: 768px) {
+  .CardContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
 
-    position: absolute;
-    width: 50%;
-    height: 33%;
-    color: #eee3cb;
-    text-align: center;
-    font-size: 36px;
-    border-radius: 12px;
-    z-index: 10;
+/* 모바일 */
+@media all and (max-width: 360) {
+  .CardContainer {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }

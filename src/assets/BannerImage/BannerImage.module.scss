@@ -1,0 +1,62 @@
+@use "../../scss/MainColor.scss" as MainColor;
+$container-height-web: 480px;
+$container-height-tablet: 300px;
+.container {
+  max-height: $container-height-web;
+  height: $container-height-web;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.coverCard {
+  position: relative;
+}
+.imageCard {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.imageCover {
+  width: 100%;
+  max-height: $container-height-web;
+  height: $container-height-web;
+  position: absolute;
+
+  left: 0;
+  opacity: 0.9;
+  background-color: MainColor.$color-967E76-50;
+  z-index: 10;
+}
+
+.text {
+  width: 100%;
+  line-height: $container-height-web;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  font-size: 48px;
+  color: white;
+  z-index: 20;
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: 361px) and (max-width: 768px) {
+  .container {
+    max-height: $container-height-tablet;
+    height: $container-height-tablet;
+  }
+  .imageCover {
+    max-height: $container-height-tablet;
+    height: $container-height-tablet;
+  }
+
+  .text {
+    line-height: $container-height-tablet;
+    font-size: 30px;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: 360) {
+}
