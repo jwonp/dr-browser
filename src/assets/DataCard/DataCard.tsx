@@ -2,7 +2,9 @@
 import { useMemo, useRef, useState } from "react";
 import HoverButton, { HoverButtonProps } from "../HoverButton/HoverButton";
 import styles from "./DataCard.module.scss";
-
+export interface TemplateCardProps {
+  item: any;
+}
 type DataCardProps = {
   hasHoverEvent: boolean;
   onHoverButtons?: HoverButtonProps[];
@@ -66,24 +68,30 @@ interface ContainerProps {
 }
 interface BoxProps extends ContainerProps {}
 interface TextProps {
+  right?: boolean;
   children: string;
 }
-interface ReservationTextProps extends TextProps {
-  right?: boolean;
-}
+
+export const EmptyBox = ({ children }: TextProps) => {
+  return <div className={styles.emptyBox}>{children}</div>;
+};
 export const MiddleTextBox = ({ children }: BoxProps) => {
   return <div className={styles.middleTextBox}>{children}</div>;
 };
 
-export const MiddleText = ({ children }: TextProps) => {
-  return <div className={styles.middleText}>{children}</div>;
+export const MiddleText = ({ right, children }: TextProps) => {
+  return (
+    <div className={`${styles.middleText} ${right ? styles.right : ""}`}>
+      {children}
+    </div>
+  );
 };
 
 export const BottomRightTextBox = ({ children }: BoxProps) => {
   return <div className={styles.bottomRightTextBox}>{children}</div>;
 };
 
-export const BottomRightText = ({ children }: TextProps) => {
+export const BottomRightText = ({ children }: Omit<TextProps, "right">) => {
   return <div className={styles.bottomRightText}>{children}</div>;
 };
 
@@ -96,41 +104,45 @@ export const ReservationTextContainer = ({ children }: ContainerProps) => {
   const displayReservation = useMemo(() => reservations[index], [index]);
   return (
     <div className={styles.reservationTextContainer}>
-      <div>
-        <div
-          className={`${styles.button} ${styles.left} ${
-            isLeft ? styles.visible : styles.invisible
-          }`}
-          onMouseEnter={() => {
-            setLeft(true);
-          }}
-          onMouseLeave={() => {
-            setLeft(false);
-          }}
-          onClick={() => {
-            setIndex(() => (index > 0 ? index - 1 : reservations.length - 1));
-          }}>
-          <div>{index}</div>
+      {reservations.length === 0 ? (
+        <div className={styles.noContent}>
+          <div>{"등록된 예약이 없습니다."}</div>
         </div>
-        <div>{displayReservation}</div>
-        <div
-          className={`${styles.button} ${styles.right} ${
-            isRight ? styles.visible : styles.invisible
-          }`}
-          onMouseEnter={() => {
-            setRight(true);
-          }}
-          onMouseLeave={() => {
-            setRight(false);
-          }}
-          onClick={() => {
-            setIndex(() => (index < reservations.length - 1 ? index + 1 : 0));
-          }}>
-         
+      ) : (
+        <div>
+          <div
+            className={`${styles.button} ${styles.left} ${
+              isLeft ? styles.visible : styles.invisible
+            }`}
+            onMouseEnter={() => {
+              setLeft(true);
+            }}
+            onMouseLeave={() => {
+              setLeft(false);
+            }}
+            onClick={() => {
+              setIndex(() => (index > 0 ? index - 1 : reservations.length - 1));
+            }}>
             <div>{index}</div>
-          
+          </div>
+          <div>{displayReservation}</div>
+          <div
+            className={`${styles.button} ${styles.right} ${
+              isRight ? styles.visible : styles.invisible
+            }`}
+            onMouseEnter={() => {
+              setRight(true);
+            }}
+            onMouseLeave={() => {
+              setRight(false);
+            }}
+            onClick={() => {
+              setIndex(() => (index < reservations.length - 1 ? index + 1 : 0));
+            }}>
+            <div>{index}</div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -138,7 +150,7 @@ export const ReservationTextBox = ({ children }: BoxProps) => {
   return <div className={styles.reservationTextBox}>{children}</div>;
 };
 
-export const ReservationText = ({ children, right }: ReservationTextProps) => {
+export const ReservationText = ({ children, right }: TextProps) => {
   return (
     <div className={`${styles.reservationText} ${right ? styles.right : ""}`}>
       {children}

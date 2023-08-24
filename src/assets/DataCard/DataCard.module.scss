@@ -3,15 +3,16 @@
 @use "sass:math";
 $detailBoxMargin-Width: 0.05;
 $detailBoxMargin-Height: 0.04;
-
+$height-web: 31.38vh;
+$width-web: 30.625vw;
 .container {
   position: relative;
   border: 1px solid #000000;
   max-height: Card.$card-height-web;
-  height: 40%;
   min-height: Card.$card-height-tablet;
   max-width: Card.$card-width-web;
-  width: 100%;
+  height: $height-web;
+  width: $width-web;
   background-color: MainColor.$color-EEE3CB;
   border-radius: 23px;
 
@@ -23,16 +24,17 @@ $detailBoxMargin-Height: 0.04;
 .hoverContainer {
   position: relative;
   width: 100%;
-
   z-index: 10;
 }
 
 .hoverCard {
   position: absolute;
   border-radius: 23px;
-  width: 100%;
-  height: 100%;
+  max-height: Card.$card-height-web;
   min-height: Card.$card-height-tablet;
+  max-width: Card.$card-width-web;
+  height: $height-web;
+  width: $width-web;
   padding: 5%;
   display: flex;
   flex-direction: column;
@@ -46,12 +48,11 @@ $detailBoxMargin-Height: 0.04;
 }
 
 .detailBox {
-  position: absolute;
   max-height: Card.$card-height-web;
-  height: 40%;
   min-height: Card.$card-height-tablet;
   max-width: Card.$card-width-web;
-  width: 100%;
+  height: $height-web;
+  width: $width-web;
   padding: math.percentage($detailBoxMargin-Height)
     math.percentage($detailBoxMargin-Width);
 }
@@ -64,7 +65,9 @@ $detailBoxMargin-Height: 0.04;
   font-size: Card.$titleFontSize-web;
   border-bottom: 2px solid #000000;
 }
-
+.emptyBox {
+  font-size: Card.$textFontSize-web;
+}
 .middleTextBox {
   margin-top: 4%;
   max-height: 50%;
@@ -88,11 +91,18 @@ $detailBoxMargin-Height: 0.04;
 .reservationTextContainer {
   width: 100%;
   border-top: 1px solid black;
-  height: 60%;
-  overflow: scroll;
   margin-top: 3%;
   & > div {
     position: relative;
+  }
+}
+.noContent {
+  display: flex;
+  line-height: 12em;
+
+  justify-content: center;
+  & > div {
+    margin: auto 0;
   }
 }
 .button {
@@ -117,14 +127,13 @@ $detailBoxMargin-Height: 0.04;
 }
 
 .reservationTextBox {
-  background-color: MainColor.$color-D7C0AE-50;
   border-radius: 14px;
-  margin-top: 7%;
+  margin-top: 4%;
   padding: 3% 1%;
 }
 .reservationText {
   font-size: Card.$textFontSize-smaller-web;
-  padding-bottom: 1%;
+  margin-bottom: 3%;
 }
 .right {
   text-align: right;
@@ -152,6 +161,7 @@ $detailBoxMargin-Height: 0.04;
 /* 테블릿 세로 */
 @media all and (min-width: 361px) and (max-width: 768px) {
   .container {
+    width: max(Card.$card-width-tablet, 30.625vw);
     max-width: Card.$card-width-tablet;
     height: Card.$card-height-tablet;
     -webkit-user-select: none;
@@ -160,26 +170,16 @@ $detailBoxMargin-Height: 0.04;
     user-select: none;
   }
   .hoverCard {
+    width: max(Card.$card-width-tablet, 30.625vw);
     height: Card.$card-height-tablet;
     font-size: 20px;
   }
   .detailBox {
+    width: max(Card.$card-width-tablet, 30.625vw);
     height: Card.$card-height-tablet;
   }
 
-  .reservationTextContainer {
-    width: 100%;
-    border-top: 1px solid black;
-    height: 60%;
-    overflow: scroll;
-    margin-top: 1%;
-    & > div {
-      position: relative;
-    }
-  }
-
   .reservationTextBox {
-    background-color: MainColor.$color-D7C0AE-50;
     border-radius: 14px;
     margin-top: 2.5%;
     padding: 2.5% 1%;
