@@ -1,0 +1,56 @@
+@use "../../scss/MainColor.scss" as MainColor;
+$height-web: 2.5em;
+$label-font-size-web: 28px;
+$font-size-web: 22px;
+$padding-left-web: 1em;
+.container {
+  position: relative;
+  & .label {
+    font-size: $label-font-size-web;
+    color: white;
+  }
+}
+.button {
+  background-color: MainColor.$color-D7C0AE !important;
+  
+}
+.pointer{
+  cursor: pointer !important;
+}
+.textBox {
+  width: 100%;
+  height: $height-web;
+  font-size: $font-size-web;
+  background-color: white;
+  margin-bottom: 1em;
+  border-radius: 16px;
+}
+.input {
+  width: 100%;
+  padding-left: $padding-left-web;
+  height: $height-web;
+  font-size: $font-size-web;
+  background-color: rgba(0, 0, 0, 0);
+  caret-color: MainColor.$color-967E76;
+  border: none;
+
+  &::selection {
+    background-color: MainColor.$color-EEE3CB;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.noEditable {
+  font-size: $font-size-web;
+  padding-left: $padding-left-web;
+  line-height: $height-web;
+}
+
+.notValid {
+  position: absolute;
+  color: red;
+  right: 1em;
+  bottom: 0;
+}
