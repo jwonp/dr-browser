@@ -9,6 +9,7 @@ $container-height-tablet: 300px;
   -ms-user-select: none;
   user-select: none;
 }
+
 .coverCard {
   position: relative;
 }
@@ -31,6 +32,7 @@ $container-height-tablet: 300px;
 
 .text {
   width: 100%;
+  height: $container-height-web;
   line-height: $container-height-web;
   vertical-align: middle;
   text-align: center;
@@ -52,6 +54,7 @@ $container-height-tablet: 300px;
   }
 
   .text {
+    height: $container-height-tablet;
     line-height: $container-height-tablet;
     font-size: 30px;
   }
