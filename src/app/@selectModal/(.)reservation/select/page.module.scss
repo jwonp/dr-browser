@@ -1,0 +1,40 @@
+@use "../../../../scss/Global.scss" as global;
+$headerHeight-web: 64px;
+$buttonCardWidth-web: 64px;
+$buttonImageWidth-web: 42px;
+$logo-font-size-web: 36px;
+
+$headerHeight-tablet: 48px;
+$buttonCardWidth-tablet: 48px;
+$buttonImageWidth-tablet: 30px;
+$logo-font-size-tablet: 28px;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(215, 192, 174, 0.7);
+  overflow: hidden;
+}
+.modalContainer {
+  margin: 10% auto;
+  width: global.$media-max-width-tablet;
+  height: 100vh;
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .modalContainer {
+    margin: 20% auto;
+    width: global.$media-max-width-mobile;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+  .modalContainer {
+    margin: 30% auto;
+    width: global.$media-min-width-mobile;
+  }
+}
