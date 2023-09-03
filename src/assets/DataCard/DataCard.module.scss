@@ -1,0 +1,211 @@
+@use "../../scss/MainColor.scss" as MainColor;
+@use "../../scss/Card.scss" as Card;
+@use "../../scss/Global.scss" as global;
+@use "sass:math";
+$detailBoxMargin-Width: 0.05;
+$detailBoxMargin-Height: 0.04;
+$width-web: 30.625vw;
+$height-web: 31.38vh;
+
+.container {
+  position: relative;
+  border: 1px solid #000000;
+  min-width: Card.$card-max-width-tablet;
+  max-width: Card.$card-max-width-web;
+  height: Card.$card-height-web;
+  width: 100%;
+  background-color: MainColor.$color-EEE3CB;
+  border-radius: Card.$border-radius-web;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.hoverContainer {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.hoverCard {
+  position: absolute;
+  border-radius: Card.$border-radius-web;
+  min-width: Card.$card-max-width-tablet;
+  max-width: Card.$card-max-width-web;
+  height: Card.$card-height-web;
+  width: 100%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.detailContainer {
+  position: relative;
+  z-index: 5;
+}
+
+.detailBox {
+  min-width: Card.$card-max-width-tablet;
+  max-width: Card.$card-max-width-web;
+  height: Card.$card-height-web;
+  width: 100%;
+  border-radius: Card.$border-radius-web;
+  padding: math.percentage($detailBoxMargin-Height)
+    math.percentage($detailBoxMargin-Width);
+}
+.blur {
+  filter: blur(5px);
+}
+
+// DataCard children
+.title {
+  font-size: Card.$titleFontSize-web;
+  border-bottom: 2px solid #000000;
+}
+.emptyBox {
+  height: 100%;
+  font-size: Card.$textFontSize-web;
+  & > div {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    & > div {
+      margin: auto 0;
+    }
+  }
+}
+.middleTextBox {
+  margin-top: 4%;
+  max-height: 50%;
+}
+.middleText {
+  font-size: Card.$textFontSize-web;
+  padding-bottom: 1%;
+}
+.bottomRightTextBox {
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
+}
+
+.bottomRightText {
+  width: 100%;
+  font-size: Card.$textFontSize-web;
+  text-align: right;
+}
+
+.reservationTextContainer {
+  width: 100%;
+  border-top: 1px solid black;
+  margin-top: 2%;
+  & > div {
+    position: relative;
+  }
+}
+.noContent {
+  display: flex;
+  height: Card.$card-height-web * 0.5;
+  justify-content: center;
+  & > div {
+    margin: auto 0;
+  }
+}
+.button {
+  position: absolute;
+  top: 0;
+  width: 2rem;
+  height: 100%;
+  border-radius: 8px;
+  background-color: MainColor.$color-967E76-90;
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    margin: auto 0;
+  }
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+
+.reservationTextBox {
+  border-radius: 14px;
+  margin-top: 4%;
+  padding: 1%;
+}
+.reservationText {
+  font-size: Card.$textFontSize-web;
+  margin-bottom: 1%;
+}
+.right {
+  text-align: right;
+}
+.visible {
+  animation-duration: 0.5s;
+  animation-name: display;
+}
+.invisible {
+  opacity: 0;
+}
+.hidden {
+  display: none;
+}
+
+@keyframes display {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .container {
+    max-width: Card.$card-max-width-tablet;
+    height: Card.$card-height-tablet;
+    border-radius: Card.$border-radius-tablet;
+  }
+  .hoverCard {
+    border-radius: Card.$border-radius-tablet;
+    max-width: Card.$card-max-width-tablet;
+    height: Card.$card-height-tablet;
+  }
+  .detailBox {
+    max-width: Card.$card-max-width-tablet;
+    height: Card.$card-height-tablet;
+    border-radius: Card.$border-radius-tablet;
+  }
+  .emptyBox {
+    font-size: Card.$textFontSize-tablet;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+  .container {
+    max-width: Card.$card-max-width-mobile;
+    height: Card.$card-height-mobile;
+    border-radius: Card.$border-radius-mobile;
+  }
+  .hoverCard {
+    border-radius: Card.$border-radius-mobile;
+    max-width: Card.$card-max-width-mobile;
+    height: Card.$card-height-mobile;
+  }
+  .detailBox {
+    max-width: Card.$card-max-width-mobile;
+    height: Card.$card-height-mobile;
+    border-radius: Card.$border-radius-mobile;
+  }
+  .emptyBox {
+    font-size: Card.$textFontSize-mobile;
+  }
+}
