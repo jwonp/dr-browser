@@ -1,0 +1,22 @@
+@use "./MainColor.scss" as MainColor;
+@use "./Global.scss" as Global;
+@use "./Header.scss" as Header;
+
+.container {
+  position: fixed;
+  top: Header.$headerHeight-web;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - Header.$headerHeight-web);
+  overflow-y: scroll;
+  background-color: MainColor.$color-D7C0AE-50;
+  z-index: 1000;
+  & > div {
+    padding: 1%;
+    width: 100%;
+    height: 90%;
+  }
+}
+.hidden {
+  display: none;
+}

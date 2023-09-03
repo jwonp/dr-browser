@@ -1,0 +1,34 @@
+@use "../scss/Global.scss" as global; 
+$card-height-web: 221px;
+$card-width-web: 383px;
+$card-max-width-web: 383px;
+$titleFontSize-web: 28px;
+$textFontSize-web: 16px;
+
+$border-radius-web: 23px;
+
+$card-height-tablet: 201px;
+$card-width-tablet: 350px;
+$card-max-width-tablet: 350px;
+$titleFontSize-tablet: 26px;
+$textFontSize-tablet: 15px;
+
+$border-radius-tablet: 23px;
+
+$card-height-mobile: 189px;
+$card-width-mobile: 328px;
+$card-max-width-mobile: 328px;
+$titleFontSize-mobile: 24px;
+$textFontSize-mobile: 14px;
+
+$border-radius-mobile: 23px;
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width:  global.$media-max-width-tablet) {
+
+  }
+
+  /* 모바일 */
+  @media all and (max-width: global.$media-max-width-mobile) {
+
+  }
