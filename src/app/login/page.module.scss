@@ -1,0 +1,20 @@
+@use "@/components/styles/color/mainColors.scss" as mainColor;
+@use "@/components/styles/templates/mainSizes.scss" as mainSize;
+.wrapper {
+  width: 100%;
+  padding: mainSize.$main-size-wrapper-padding;
+}
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+.form_wrapper {
+  width: 100%;
+}
+.form {
+  margin: 0 auto;
+}
+
+.register_link {
+  text-align: center;
+}
