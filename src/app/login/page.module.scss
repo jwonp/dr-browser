@@ -1,20 +1,26 @@
-@use "@/components/styles/color/mainColors.scss" as mainColor;
-@use "@/components/styles/templates/mainSizes.scss" as mainSize;
-.wrapper {
-  width: 100%;
-  padding: mainSize.$main-size-wrapper-padding;
-}
+@use "../../scss/Global.scss" as global; 
+$headerHeight-web: 64px;
+$headerHeight-tablet: 48px;
 .container {
-  width: 70%;
-  margin: 0 auto;
+  width: 100vw;
+  height: calc(100vh - $headerHeight-web);
+
+  & > div {
+    padding: 5% 0;
+  }
 }
-.form_wrapper {
+.registerLink {
   width: 100%;
-}
-.form {
-  margin: 0 auto;
+  text-decoration: underline;
+  margin-top: 1em;
+  color: white;
+  text-align: center;
 }
 
-.register_link {
-  text-align: center;
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width:  global.$media-max-width-tablet) {
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
 }

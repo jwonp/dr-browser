@@ -1,69 +1,115 @@
 "use client";
-import styles from "@/app/login/page.module.scss";
-import FormInputBar from "@/components/form/FormInputBar/FormInputBar";
-import { phoneNumberKeyEvent } from "@/components/form/FormInputBar/PhoneNumberEvent";
+import Button from "@/assets/Button/Button";
+import styles from "./page.module.scss";
+import CardContainer from "@/assets/CardContainer/CardContainer";
+import Text from "@/assets/Text/Text";
 import Link from "next/link";
+import { useState } from "react";
+
+import Provider from "@/redux/Provider";
+import axios from "axios";
+
 import { useRouter } from "next/navigation";
-
-const Login = () => {
+type LoginData = {
+  username: string;
+  password: string;
+};
+const LoginWrapper = () => {
   const router = useRouter();
+  const initLoginData: LoginData = {
+    username: "",
+    password: "",
+  };
+  const [loginData, setLoginData] = useState<LoginData>(initLoginData);
+  const onSubmit = async () => {
+    let isNotValid = false;
 
+    if (loginData.username.length === 0) {
+      setNotValidId("아이디를 입력해주세요");
+      isNotValid = true;
+    }
+
+    if (loginData.password.length < 8) {
+      setNotValidPassword("비밀번호를 8자리 이상 입력해주세요");
+      isNotValid = true;
+    }
+
+    if (isNotValid === false) {
+      setNotValidId("");
+      setNotValidPassword("");
+    }
+
+    await axios
+      .post(`/api/auth/login`, loginData)
+      .then((res) => {
+        try {
+          window.localStorage.setItem("jwt", res.data.jwt);
+        } catch {
+          console.log("fail to save");
+        }
+        router.push("/");
+      })
+      .catch(() => {
+        setNotValidId("아이디 혹은 비밀번호가 올바르지 않습니다");
+        setNotValidPassword("아이디 혹은 비밀번호가 올바르지 않습니다");
+        isNotValid = true;
+      });
+  };
+  const [notValidId, setNotValidId] = useState<string>();
+  const [notValidPassword, setNotValidPassword] = useState<string>();
   return (
-    <div className={`${styles.wrapper}`}>
-      <div className={`${styles.container}`}>
-        <div className={`${styles.form_wrapper}`}>
-          <form className={`${styles.form}`}>
-            <FormInputBar
-              label="User ID"
-              inputProps={{
-                id: "login-id",
-                type: "text",
-                required: true,
-                autoFocus: true,
-                placeholder: "User ID",
-              }}
-            />
-            <FormInputBar
-              label="Phone"
-              inputProps={{
-                id: "login-phone",
-                type: "tel",
-                required: true,
-                placeholder: "010-XXX(X)-XXXX",
-                pattern: "[0-9]{3}-[0-9]{3,4}-[0-9]{4}",
-                maxLength: 13,
-                onKeyDown: (e) => {
-                  phoneNumberKeyEvent(e);
-                },
-              }}
-            />
-            <FormInputBar
-              inputProps={{
-                type: "submit",
-                value: "Login",
-                onClick: (e) => {
-                  e.preventDefault();
-                  const userId = (
-                    document.getElementById("login-id") as HTMLInputElement
-                  ).value;
-                  const userPhone = (
-                    document.getElementById("login-phone") as HTMLInputElement
-                  ).value;
-                  console.log(`${userId} and ${userPhone}`);
-
-                  router.push("/reservation");
-                },
-              }}
-            />
-
-            <div className={styles.register_link}>
-              <Link href={"/signup"}>Click here to Sign up</Link>
-            </div>
-          </form>
-        </div>
+    <div className={styles.container}>
+      <div>
+        <CardContainer
+          isWrappeed
+          title={"로그인"}
+          buttons={
+            <>
+              <Button onClick={onSubmit}>로그인</Button>
+              <div className={styles.registerLink}>
+                <Link href={"/register"}>{"회원가입"}</Link>
+              </div>
+            </>
+          }
+          tab={3}>
+          <Text
+            label={"아이디"}
+            placeholder={"아이디를 입력하세요"}
+            onChange={(e) => {
+              setLoginData(() => {
+                return {
+                  username: e.target.value,
+                  password: loginData.password,
+                };
+              });
+            }}
+            notValidText={notValidId}
+            isEditable></Text>
+          <Text
+            label={"비밀번호"}
+            type={"password"}
+            placeholder={"비밀번호는 8자리 이상입니다"}
+            onChange={(e) => {
+              setLoginData(() => {
+                return {
+                  username: loginData.username,
+                  password: e.target.value,
+                };
+              });
+            }}
+            notValidText={notValidPassword}
+            isEditable></Text>
+        </CardContainer>
       </div>
     </div>
   );
 };
 
+const Login = () => {
+  return (
+    <Provider>
+      <LoginWrapper />
+    </Provider>
+  );
+};
 export default Login;
