@@ -1,0 +1,31 @@
+@use "../../scss/Global.scss" as global;
+@use "../../scss//MainColor.scss" as MainColor;
+.container {
+  padding: 5% 0;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: MainColor.$color-D7C0AE-90;
+  font-size: 28px;
+  z-index: 100;
+  & > div {
+    margin: auto 0;
+  }
+}
+.hidden {
+  display: none;
+}
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+}
