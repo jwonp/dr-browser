@@ -1,0 +1,57 @@
+@use "../../scss//MainColor.scss" as MainColor;
+@use "../../scss/Global.scss" as global;
+@use "../../scss/Header.scss" as Header;
+
+.container {
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid MainColor.$color-D7C0AE;
+  background-color: MainColor.$color-967E76;
+  display: grid;
+  grid-template-columns: Header.$buttonCardWidth-web 1fr Header.$buttonCardWidth-web;
+  height: Header.$headerHeight-web;
+  z-index: 10000;
+}
+
+.buttonCard {
+  width: Header.$buttonCardWidth-web;
+  height: Header.$headerHeight-web;
+  padding: calc((Header.$buttonCardWidth-web - Header.$buttonImageWidth-web) / 2);
+}
+.buttonImage {
+  width: Header.$buttonImageWidth-web;
+  height: Header.$buttonImageWidth-web;
+}
+.logo {
+  color: white;
+  line-height: Header.$headerHeight-web;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: Header.$logo-font-size-web;
+  text-align: center;
+}
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .container {
+    grid-template-columns: Header.$buttonCardWidth-tablet 1fr Header.$buttonCardWidth-tablet;
+    height: Header.$headerHeight-tablet;
+  }
+
+  .buttonCard {
+    width: Header.$buttonCardWidth-tablet;
+    height: Header.$headerHeight-tablet;
+    padding: calc((Header.$buttonCardWidth-tablet - Header.$buttonImageWidth-tablet) / 2);
+  }
+  .buttonImage {
+    width: Header.$buttonImageWidth-tablet;
+    height: Header.$buttonImageWidth-tablet;
+  }
+  .logo {
+    line-height: Header.$headerHeight-tablet;
+    font-size: Header.$logo-font-size-tablet;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+}
