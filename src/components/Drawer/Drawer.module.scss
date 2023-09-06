@@ -1,0 +1,97 @@
+@use "../../scss/MainColor.scss" as MainColor;
+@use "../../scss/Global.scss" as global;
+$headerHeight-web: 64px;
+$buttonCardWidth-web: 64px;
+$buttonImageWidth-web: 42px;
+$logo-font-size-web: 36px;
+
+$headerHeight-tablet: 48px;
+$buttonCardWidth-tablet: 48px;
+$buttonImageWidth-tablet: 30px;
+$logo-font-size-tablet: 28px;
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+  background-color: MainColor.$color-967E76-50;
+}
+
+.drawerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background-color: MainColor.$color-967E76;
+}
+.header {
+  height: $headerHeight-web;
+}
+.buttonImageCard {
+  width: $buttonCardWidth-web;
+  height: $headerHeight-web;
+  padding: calc(($buttonCardWidth-web - $buttonImageWidth-web) / 2);
+}
+.buttonImage {
+  width: $buttonImageWidth-web;
+  height: $buttonImageWidth-web;
+}
+
+.idCard {
+  height: $headerHeight-web;
+  border-bottom: 1px solid MainColor.$color-EEE3CB;
+  line-height: $headerHeight-web;
+  padding-left: 5%;
+  color: white;
+  font-size: 20px;
+}
+.itemButton {
+  height: $headerHeight-web;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: $headerHeight-web 1fr;
+  & .imageBox {
+    position: relative;
+    width: $headerHeight-web;
+    height: $headerHeight-web;
+    padding: calc(($buttonCardWidth-web - $headerHeight-web * 0.5625) / 2);
+    & .image {
+      width: $headerHeight-web * 0.5625;
+      height: $headerHeight-web * 0.5625;
+    }
+  }
+
+  & .textBox {
+    & .text {
+      line-height: $headerHeight-web * 1.1;
+      font-size: 22px;
+      color: white;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .header {
+    height: $headerHeight-tablet;
+  }
+  .buttonImageCard {
+    width: $buttonCardWidth-tablet;
+    height: $headerHeight-tablet;
+    padding: calc(($buttonCardWidth-tablet - $buttonImageWidth-tablet) / 2);
+  }
+  .buttonImage {
+    width: $buttonImageWidth-tablet;
+    height: $buttonImageWidth-tablet;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+}
