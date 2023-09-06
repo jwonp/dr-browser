@@ -1,0 +1,41 @@
+@use "../../scss/MainColor.scss" as MainColor;
+@use "../../scss/Global.scss" as global;
+$height-web: 48px;
+$font-size-web: 22px;
+
+$height-tablet: 36px;
+$font-size-tablet: 18px;
+
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: MainColor.$color-D7C0AE;
+  height: $height-web;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 14px;
+  cursor: pointer;
+}
+.text {
+  display: inline-block;
+  margin: auto 0;
+  vertical-align: middle;
+  font-size: $font-size-web;
+  text-align: center;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .text {
+    font-size: 22px;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+}

@@ -1,0 +1,10 @@
+@use "../../scss/Global.scss" as global; 
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width:  global.$media-max-width-tablet) {
+
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+
+}

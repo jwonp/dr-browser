@@ -1,0 +1,29 @@
+@use "../../scss/MainColor.scss" as MainColor;
+@use "../../scss/Global.scss" as global;
+.container {
+  border-radius: 16px;
+  border: none;
+  background-color: MainColor.$color-D7C0AE;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  line-height: 2.5em;
+  height: 2.5em;
+  cursor: pointer;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+  }
+  & .disabled {
+    cursor: not-allowed;
+    background-color: MainColor.$color-9BABB8-50;
+  }
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+}

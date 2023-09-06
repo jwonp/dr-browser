@@ -1,0 +1,81 @@
+@use "../../scss/MainColor.scss" as MainColor;
+@use "../../scss/Global.scss" as global;
+$container-height-web: 480px;
+$container-height-tablet: 300px;
+$container-height-mobile: 256px;
+.container {
+  max-height: $container-height-web;
+  height: $container-height-web;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.coverCard {
+  position: relative;
+}
+.imageCard {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.imageCover {
+  width: 100%;
+  max-height: $container-height-web;
+  height: $container-height-web;
+  position: absolute;
+
+  left: 0;
+  opacity: 0.9;
+  background-color: MainColor.$color-967E76-50;
+  z-index: 10;
+}
+
+.text {
+  width: 100%;
+  height: $container-height-web;
+  line-height: $container-height-web;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  font-size: 48px;
+  color: white;
+  z-index: 20;
+}
+
+/* 테블릿 세로 */
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .container {
+    max-height: $container-height-tablet;
+    height: $container-height-tablet;
+  }
+  .imageCover {
+    max-height: $container-height-tablet;
+    height: $container-height-tablet;
+  }
+
+  .text {
+    height: $container-height-tablet;
+    line-height: $container-height-tablet;
+    font-size: 30px;
+  }
+}
+
+/* 모바일 */
+@media all and (max-width: global.$media-max-width-mobile) {
+  .container {
+    max-height: $container-height-mobile;
+    height: $container-height-mobile;
+  }
+  .imageCover {
+    max-height: $container-height-mobile;
+    height: $container-height-mobile;
+  }
+
+  .text {
+    height: $container-height-mobile;
+    line-height: $container-height-mobile;
+    font-size: 20px;
+  }
+}
