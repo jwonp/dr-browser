@@ -1,22 +1,109 @@
-// import Image from "next/image";
-import Image from "next/image";
+"use client";
+import BannerImage from "@/assets/BannerImage/BannerImage";
+import { HoverButtonProps } from "@/assets/HoverButton/HoverButton";
+
 import styles from "./page.module.scss";
+import LostCard from "@/assets/DataCard/templates/LostCard/LostCard";
+
+import CardDetailCard, {
+  CardDetailCardItem,
+} from "@/assets/DataCard/templates/CardDetailCard/CardDetailCard";
+
+import { Grid } from "@/assets/CardContainer/CardContainer";
+import useSWR from "swr";
+
+import { useEffect, useMemo, useState } from "react";
+import DataCard, { EmptyBox } from "@/assets/DataCard/DataCard";
+import { requsetWithJWT } from "@/util/request";
+import { getUsernameByJWT } from "@/util/JwtParser";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <div className={`${styles.wrapper}`}>
-      <div className={`${styles.image_container}`}>
-        <div>Reserve My Room Now</div>
-        <Image
-          src={"/HomeBanner.jpg"}
-          alt={"HomeBanner"}
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", opacity: 0.5 }}
-          priority={true}
+  const router = useRouter();
+  const [jwt, setJwt] = useState<string>(undefined);
+
+  useEffect(() => {
+    const jwt = window.localStorage.getItem("jwt");
+    if (jwt) {
+      setJwt(jwt);
+    }
+  }, []);
+  useEffect(() => {
+    const username = getUsernameByJWT(jwt);
+    if (username === process.env.NEXT_PUBLIC_ADMIN) {
+      router.push("/admin");
+    }
+  }, [jwt]);
+
+  const CardOnIndexSWR = useSWR(
+    jwt ? `/api/card/index?id=${getUsernameByJWT(jwt)}` : null,
+    (url: string) =>
+      requsetWithJWT(jwt)
+        .get(url)
+        .then((res) => res.data),
+    { refreshInterval: 0, shouldRetryOnError: false }
+  );
+
+  useEffect(() => {
+    if (CardOnIndexSWR.error) {
+      window.localStorage.removeItem("jwt");
+    }
+  }, [CardOnIndexSWR.error]);
+  const IndexCards = useMemo(() => {
+    if (
+      !CardOnIndexSWR ||
+      !CardOnIndexSWR.data ||
+      CardOnIndexSWR.data.length === 0
+    ) {
+      return (
+        <DataCard hasHoverEvent={false}>
+          <EmptyBox>예약되어 있는 카드가 없습니다</EmptyBox>
+        </DataCard>
+      );
+    }
+    return CardOnIndexSWR.data.map(
+      (item: CardDetailCardItem, index: number) => (
+        <CardDetailCard
+          key={index}
+          item={item}
+          onHoverButtons={[
+            {
+              text: item.lostTime ? "분실 신고 취소" : "분실 신고",
+              onClick: () => {
+                const res = item.lostTime
+                  ? requsetWithJWT(jwt).delete(
+                      `/api/card/lost?id=${item.cardId}`
+                    )
+                  : requsetWithJWT(jwt).post("/api/card/lost", {
+                      cardId: item.cardId,
+                    });
+                res.then(() => {
+                  CardOnIndexSWR.mutate();
+                });
+              },
+            },
+            {
+              text: "예약 정보",
+              onClick: () => {
+                router.push(
+                  `/reservation?id=${item.reservation.reservationId}`
+                );
+              },
+            },
+          ]}
         />
+      )
+    );
+  }, [CardOnIndexSWR, CardOnIndexSWR.data]);
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.main}>
+        <BannerImage />
+        <div className={styles.CardContainer}>
+          <Grid grid={3}>{IndexCards}</Grid>
+        </div>
       </div>
-      <div></div>
     </div>
-  ); // 3807 4759
+  );
 }
