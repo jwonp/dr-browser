@@ -90,6 +90,37 @@ $logo-font-size-tablet: 28px;
     width: $buttonImageWidth-tablet;
     height: $buttonImageWidth-tablet;
   }
+  .idCard {
+    height: $headerHeight-web;
+    border-bottom: 1px solid MainColor.$color-EEE3CB;
+    line-height: $headerHeight-web;
+    padding-left: 5%;
+
+    font-size: 16px;
+  }
+  .itemButton {
+    height: $headerHeight-tablet;
+
+    grid-template-columns: $headerHeight-tablet 1fr;
+    & .imageBox {
+      width: $headerHeight-tablet;
+      height: $headerHeight-tablet;
+      padding: calc(
+        ($buttonCardWidth-tablet - $headerHeight-tablet * 0.5625) / 2
+      );
+      & .image {
+        width: $headerHeight-tablet * 0.5625;
+        height: $headerHeight-tablet * 0.5625;
+      }
+    }
+
+    & .textBox {
+      & .text {
+        line-height: $headerHeight-tablet * 1.1;
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 /* 모바일 */
