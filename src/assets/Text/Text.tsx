@@ -16,6 +16,7 @@ const Text = ({
   isButton,
   type,
   label,
+  placeholder,
   notValidText,
   onChange,
   children,
@@ -27,6 +28,7 @@ const Text = ({
         <input
           className={`${styles.input} ${isButton && styles.pointer}`}
           type={type}
+          placeholder={placeholder ? placeholder : ""}
           maxLength={100}
           readOnly={!isEditable}
           defaultValue={children}
