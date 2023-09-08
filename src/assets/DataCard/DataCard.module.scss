@@ -178,6 +178,9 @@ $height-web: 31.38vh;
     max-width: Card.$card-max-width-tablet;
     height: Card.$card-height-tablet;
   }
+  .reservationTextContainer {
+    margin-top: 0;
+  }
   .detailBox {
     max-width: Card.$card-max-width-tablet;
     height: Card.$card-height-tablet;
@@ -199,6 +202,9 @@ $height-web: 31.38vh;
     border-radius: Card.$border-radius-mobile;
     max-width: Card.$card-max-width-mobile;
     height: Card.$card-height-mobile;
+  }
+  .reservationTextContainer {
+    margin-top: 0;
   }
   .detailBox {
     max-width: Card.$card-max-width-mobile;

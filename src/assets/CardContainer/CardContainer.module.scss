@@ -31,9 +31,51 @@
     }
   }
 }
-
+@media all and (min-width: 800px) and (max-width: 1200px) {
+  .container {
+    & .main {
+      & .mainContainer {
+        & > div {
+          grid-template-columns: 1fr 1fr !important;
+        }
+      }
+    }
+  }
+}
+@media all and (min-width: global.$media-max-width-tablet) and (max-width: 799px) {
+  .container {
+    & .main {
+      & .mainContainer {
+        & > div {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    }
+  }
+}
 /* 테블릿 세로 */
 @media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .container {
+    grid-template-rows: 30px 1fr 70px;
+
+    border-radius: 20px;
+    min-height: 400px;
+    background-color: MainColor.$color-967E76;
+    margin-bottom: 5%;
+    padding: 3% 0;
+    & .title {
+      color: white;
+      font-size: 24px;
+      text-align: center;
+    }
+    & .main {
+      & .mainContainer {
+        & > div {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    }
+  }
 }
 
 /* 모바일 */

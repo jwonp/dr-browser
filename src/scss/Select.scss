@@ -20,3 +20,14 @@
 .hidden {
   display: none;
 }
+
+
+/* 테블릿 세로 */
+@media all and (min-width: Global.$media-min-width-tablet) and (max-width:  Global.$media-max-width-tablet) {
+
+}
+
+/* 모바일 */
+@media all and (max-width: Global.$media-max-width-mobile) {
+
+}

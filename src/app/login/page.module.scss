@@ -1,9 +1,9 @@
-@use "../../scss/Global.scss" as global; 
-$headerHeight-web: 64px;
-$headerHeight-tablet: 48px;
+@use "../../scss/Global.scss" as global;
+@use "../../scss/Header.scss" as Header;
+
 .container {
   width: 100vw;
-  height: calc(100vh - $headerHeight-web);
+  height: calc(100vh - Header.$headerHeight-web);
 
   & > div {
     padding: 5% 0;
@@ -18,7 +18,13 @@ $headerHeight-tablet: 48px;
 }
 
 /* 테블릿 세로 */
-@media all and (min-width: global.$media-min-width-tablet) and (max-width:  global.$media-max-width-tablet) {
+@media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
+  .container {
+    height: calc(100vh - Header.$headerHeight-tablet);
+  }
+  .registerLink {
+    margin-top: 0.5em;
+  }
 }
 
 /* 모바일 */
