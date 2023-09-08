@@ -129,7 +129,7 @@ export const ReservationTextContainer = ({ children }: ContainerProps) => {
             onClick={() => {
               setIndex(() => (index > 0 ? index - 1 : reservations.length - 1));
             }}>
-            <div>{index}</div>
+            <div>{`${index + 1}/${reservations.length}`}</div>
           </div>
           <div>{displayReservation}</div>
           <div
@@ -145,7 +145,7 @@ export const ReservationTextContainer = ({ children }: ContainerProps) => {
             onClick={() => {
               setIndex(() => (index < reservations.length - 1 ? index + 1 : 0));
             }}>
-            <div>{index}</div>
+            <div>{`${index + 1}/${reservations.length}`}</div>
           </div>
         </div>
       )}
