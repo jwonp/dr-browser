@@ -16,11 +16,18 @@
 .buttonCard {
   width: Header.$buttonCardWidth-web;
   height: Header.$headerHeight-web;
-  padding: calc((Header.$buttonCardWidth-web - Header.$buttonImageWidth-web) / 2);
+  padding: calc(
+    (Header.$buttonCardWidth-web - Header.$buttonImageWidth-web) / 2
+  );
 }
 .buttonImage {
   width: Header.$buttonImageWidth-web;
   height: Header.$buttonImageWidth-web;
+}
+.name {
+  font-size: 18px;
+  color: white;
+  line-height: Header.$buttonImageWidth-web;
 }
 .logo {
   color: white;
@@ -40,7 +47,9 @@
   .buttonCard {
     width: Header.$buttonCardWidth-tablet;
     height: Header.$headerHeight-tablet;
-    padding: calc((Header.$buttonCardWidth-tablet - Header.$buttonImageWidth-tablet) / 2);
+    padding: calc(
+      (Header.$buttonCardWidth-tablet - Header.$buttonImageWidth-tablet) / 2
+    );
   }
   .buttonImage {
     width: Header.$buttonImageWidth-tablet;

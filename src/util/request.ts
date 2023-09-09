@@ -1,24 +1,24 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 export const HEADER_AUTHORIZATION = "Authorization";
-const errorResponse = (response: AxiosResponse) => {
+const errorResponse = (status: number, errorMsg: string) => {
   return {
-    status: response.status ?? 500,
-    message: response.data.message ?? "Error",
+    status: status ?? 500,
+    message: errorMsg ?? "ERROR",
   };
 };
 
 const createInstance = (jwt: string) => {
   const instance = axios.create({
     baseURL: process.env.BACKEND_ENDPOINT,
-    timeout: 1000,
+    timeout: 3000,
     withCredentials: true,
     headers: {
       Authorization: `Bearer ${jwt}`,
     },
   });
-  return setInterceptors(instance);
+  return setInterceptors(jwt, instance);
 };
-const setInterceptors = (instance: AxiosInstance) => {
+const setInterceptors = (jwt: string, instance: AxiosInstance) => {
   instance.interceptors.request.use(
     (config) => {
       return config;
@@ -33,7 +33,9 @@ const setInterceptors = (instance: AxiosInstance) => {
     (response: AxiosResponse) => {
       return response;
     },
-    (error) => Promise.reject(errorResponse(error.response))
+    async (error: AxiosError) => {
+      Promise.reject(errorResponse(error.status, error.message));
+    }
   );
 
   return instance;

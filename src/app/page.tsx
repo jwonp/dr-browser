@@ -44,11 +44,7 @@ export default function Home() {
     { refreshInterval: 0, shouldRetryOnError: false }
   );
 
-  useEffect(() => {
-    if (CardOnIndexSWR.error) {
-      window.localStorage.removeItem("jwt");
-    }
-  }, [CardOnIndexSWR.error]);
+  
   const IndexCards = useMemo(() => {
     if (
       !CardOnIndexSWR ||
