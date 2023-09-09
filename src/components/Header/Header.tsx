@@ -2,8 +2,8 @@
 import Image from "next/image";
 import styles from "./Header.module.scss";
 import DrawerSwitchImageSource from "@public/drawer-switch-white.png";
-import LoginImageSource from "@public/login-white.png";
-import LogoutImageSource from "@public/logout-white.png";
+import LoginImageSource from "@public/login-white.svg";
+import LogoutImageSource from "@public/logout-white.svg";
 import useSWR from "swr";
 import Provider from "@/redux/Provider";
 import { useAppDispatch } from "@/redux/hooks";
