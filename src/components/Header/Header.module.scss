@@ -55,6 +55,11 @@
     width: Header.$buttonImageWidth-tablet;
     height: Header.$buttonImageWidth-tablet;
   }
+  .name {
+    font-size: 16px;
+    color: white;
+    line-height: Header.$buttonImageWidth-tablet;
+  }
   .logo {
     line-height: Header.$headerHeight-tablet;
     font-size: Header.$logo-font-size-tablet;
@@ -63,4 +68,29 @@
 
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
+  .container {
+    grid-template-columns: Header.$buttonCardWidth-mobile 1fr Header.$buttonCardWidth-mobile;
+    height: Header.$headerHeight-mobile;
+  }
+
+  .buttonCard {
+    width: Header.$buttonCardWidth-mobile;
+    height: Header.$headerHeight-mobile;
+    padding: calc(
+      (Header.$buttonCardWidth-mobile - Header.$buttonImageWidth-mobile) / 2
+    );
+  }
+  .buttonImage {
+    width: Header.$buttonImageWidth-mobile;
+    height: Header.$buttonImageWidth-mobile;
+  }
+  .name {
+    font-size: 14px;
+    color: white;
+    line-height: Header.$buttonImageWidth-mobile;
+  }
+  .logo {
+    line-height: Header.$headerHeight-mobile;
+    font-size: Header.$logo-font-size-mobile;
+  }
 }
