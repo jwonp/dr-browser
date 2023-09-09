@@ -8,5 +8,5 @@ export const getUsernameByJWT = (jwt: string):string | undefined => {
   } catch {
     return undefined;
   }
-  return undefined;
+  
 };
