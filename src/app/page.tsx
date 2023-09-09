@@ -1,17 +1,11 @@
 "use client";
 import BannerImage from "@/assets/BannerImage/BannerImage";
-import { HoverButtonProps } from "@/assets/HoverButton/HoverButton";
-
 import styles from "./page.module.scss";
-import LostCard from "@/assets/DataCard/templates/LostCard/LostCard";
-
 import CardDetailCard, {
   CardDetailCardItem,
 } from "@/assets/DataCard/templates/CardDetailCard/CardDetailCard";
-
 import { Grid } from "@/assets/CardContainer/CardContainer";
 import useSWR from "swr";
-
 import { useEffect, useMemo, useState } from "react";
 import DataCard, { EmptyBox } from "@/assets/DataCard/DataCard";
 import { requsetWithJWT } from "@/util/request";
