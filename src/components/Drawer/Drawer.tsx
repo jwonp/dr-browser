@@ -23,36 +23,7 @@ const DrawerWrapper = () => {
   const pathname = usePathname();
   const isDrawerOpened = useAppSelector(getDrawerSwitch);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    const jwt = window.localStorage.getItem("jwt");
-    if (jwt) {
-      setUsername(getUsernameByJWT(jwt));
-    }
-  }, [pathname]);
-  const [username, setUsername] = useState<string>("");
 
-  const beforeLogin: ItemButtonProps[] = [
-    {
-      href: "/login",
-      imageSrc: LoginImageSource,
-      text: "로그인",
-      onClick: () => {
-        dispatch(turnOff());
-      },
-    },
-  ];
-  const afterLogin: ItemButtonProps[] = [
-    {
-      href: "/",
-      imageSrc: LogoutImageSource,
-      text: "로그아웃",
-      onClick: (e) => {
-        window.localStorage.removeItem("jwt");
-        setUsername("");
-        dispatch(turnOff());
-      },
-    },
-  ];
   const admin: ItemButtonProps[] = [
     {
       href: `/admin#${ID.cardDetail}`,
@@ -81,34 +52,22 @@ const DrawerWrapper = () => {
       text: "로그아웃",
       onClick: (e) => {
         window.localStorage.removeItem("jwt");
-        setUsername("");
+
         dispatch(turnOff());
       },
     },
   ];
 
-  const buttons = useMemo(() => {
-    console.log(username);
-    if (username === undefined || username.length === 0) {
-      return beforeLogin;
-    }
+  const DrawerButtons = admin.map((item, index) => (
+    <ItemButton
+      key={index}
+      href={item.href}
+      imageSrc={item.imageSrc}
+      text={item.text}
+      onClick={item.onClick}
+    />
+  ));
 
-    if (username && pathname.split("/")[1] === "admin") {
-      return admin;
-    }
-    return afterLogin;
-  }, [username, pathname, isDrawerOpened]);
-  const DrawerButtons = useMemo(() => {
-    return buttons.map((item, index) => (
-      <ItemButton
-        key={index}
-        href={item.href}
-        imageSrc={item.imageSrc}
-        text={item.text}
-        onClick={item.onClick}
-      />
-    ));
-  }, [buttons]);
   return (
     <div
       className={isDrawerOpened ? styles.wrapper : styles.hidden}
@@ -132,9 +91,7 @@ const DrawerWrapper = () => {
             />
           </div>
         </div>
-        <div className={username ? styles.idCard : styles.hidden}>
-          {`${username}님 환영합니다`}
-        </div>
+
 
         {DrawerButtons}
       </div>

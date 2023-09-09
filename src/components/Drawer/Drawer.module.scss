@@ -40,14 +40,7 @@ $logo-font-size-tablet: 28px;
   height: $buttonImageWidth-web;
 }
 
-.idCard {
-  height: $headerHeight-web;
-  border-bottom: 1px solid MainColor.$color-EEE3CB;
-  line-height: $headerHeight-web;
-  padding-left: 5%;
-  color: white;
-  font-size: 20px;
-}
+
 .itemButton {
   height: $headerHeight-web;
   cursor: pointer;
@@ -90,14 +83,7 @@ $logo-font-size-tablet: 28px;
     width: $buttonImageWidth-tablet;
     height: $buttonImageWidth-tablet;
   }
-  .idCard {
-    height: $headerHeight-web;
-    border-bottom: 1px solid MainColor.$color-EEE3CB;
-    line-height: $headerHeight-web;
-    padding-left: 5%;
 
-    font-size: 16px;
-  }
   .itemButton {
     height: $headerHeight-tablet;
 
