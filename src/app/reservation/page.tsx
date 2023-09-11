@@ -2,7 +2,6 @@
 import styles from "./page.module.scss";
 import Button from "@/assets/Button/Button";
 import CardContainer, { Grid } from "@/assets/CardContainer/CardContainer";
-import { RoomSelectCardItem } from "@/assets/DataCard/templates/RoomSelectCard/RoomSelectCard";
 import Text from "@/assets/Text/Text";
 import Provider from "@/redux/Provider";
 import { getSelectedRoom } from "@/redux/featrues/selectedRoomSlice";
@@ -58,7 +57,7 @@ const ReservationWrapper = () => {
         address: "",
       };
     }
-    console.log(reservationSWR.data);
+
     return {
       reservationId: reservationSWR.data.reservationId,
       createdTime: reservationSWR.data.createdTime,
