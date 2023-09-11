@@ -28,6 +28,7 @@ interface CardDetailCardProps extends TemplateCardProps {
 }
 
 const CardDetailCard = ({ item, onHoverButtons }: CardDetailCardProps) => {
+  const lastTaggedDisplayText = getDateDisplayText(item.lastTagged);
   const detail = item.reservation ? (
     <>
       <MiddleTextBox>
@@ -37,17 +38,17 @@ const CardDetailCard = ({ item, onHoverButtons }: CardDetailCardProps) => {
       </MiddleTextBox>
       <BottomRightTextBox>
         <BottomRightText>{item.reservation.address}</BottomRightText>
-        <BottomRightText>{`마지막 태그 ${getDateDisplayText(
-          item.lastTagged
-        )}`}</BottomRightText>
+        <BottomRightText>{`마지막 태그 ${
+          lastTaggedDisplayText ? lastTaggedDisplayText : "기록이 없습니다"
+        }`}</BottomRightText>
       </BottomRightTextBox>
     </>
   ) : (
     <>
       <BottomRightTextBox>
-        <BottomRightText>{`마지막 태그 ${getDateDisplayText(
-          item.lastTagged
-        )}`}</BottomRightText>
+        <BottomRightText>{`마지막 태그 ${
+          lastTaggedDisplayText ? lastTaggedDisplayText : "기록이 없습니다"
+        }`}</BottomRightText>
       </BottomRightTextBox>
     </>
   );
