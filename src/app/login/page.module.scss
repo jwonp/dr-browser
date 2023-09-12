@@ -29,4 +29,10 @@
 
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
+  .container {
+    height: calc(100vh - Header.$headerHeight-mobile);
+  }
+  .registerLink {
+    margin-top: 0.6em;
+  }
 }

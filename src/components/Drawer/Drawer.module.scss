@@ -3,12 +3,17 @@
 $headerHeight-web: 64px;
 $buttonCardWidth-web: 64px;
 $buttonImageWidth-web: 42px;
-$logo-font-size-web: 36px;
+$text-font-size-web: 22px;
 
 $headerHeight-tablet: 48px;
 $buttonCardWidth-tablet: 48px;
 $buttonImageWidth-tablet: 30px;
-$logo-font-size-tablet: 28px;
+$text-font-size-tablet: 18px;
+
+$headerHeight-mobile: 32px;
+$buttonCardWidth-mobile: 32px;
+$buttonImageWidth-mobile: 24px;
+$text-font-size-mobile: 14px;
 .wrapper {
   position: fixed;
   top: 0;
@@ -23,7 +28,7 @@ $logo-font-size-tablet: 28px;
   position: fixed;
   top: 0;
   left: 0;
-  width: 30%;
+  width: 20%;
   height: 100%;
   background-color: MainColor.$color-967E76;
 }
@@ -39,7 +44,6 @@ $logo-font-size-tablet: 28px;
   width: $buttonImageWidth-web;
   height: $buttonImageWidth-web;
 }
-
 
 .itemButton {
   height: $headerHeight-web;
@@ -59,8 +63,8 @@ $logo-font-size-tablet: 28px;
 
   & .textBox {
     & .text {
-      line-height: $headerHeight-web * 1.1;
-      font-size: 22px;
+      line-height: $headerHeight-web * 1;
+      font-size: $text-font-size-web;
       color: white;
     }
   }
@@ -102,8 +106,8 @@ $logo-font-size-tablet: 28px;
 
     & .textBox {
       & .text {
-        line-height: $headerHeight-tablet * 1.1;
-        font-size: 16px;
+        line-height: $headerHeight-tablet;
+        font-size: $text-font-size-tablet;
       }
     }
   }
@@ -111,4 +115,41 @@ $logo-font-size-tablet: 28px;
 
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
+  .header {
+    height: $headerHeight-mobile;
+  }
+  .drawerContainer {
+    width: 30%;
+  }
+  .buttonImageCard {
+    width: $buttonCardWidth-mobile;
+    height: $headerHeight-mobile;
+    padding: calc(($buttonCardWidth-mobile - $buttonImageWidth-mobile) / 2);
+  }
+  .buttonImage {
+    width: $buttonImageWidth-mobile;
+    height: $buttonImageWidth-mobile;
+  }
+
+  .itemButton {
+    height: $headerHeight-mobile;
+
+    grid-template-columns: $headerHeight-mobile 1fr;
+    & .imageBox {
+      width: $headerHeight-mobile;
+      height: $headerHeight-mobile;
+      padding: calc(($headerHeight-mobile - $buttonImageWidth-mobile) / 2);
+      & .image {
+        width: $buttonImageWidth-mobile;
+        height: $buttonImageWidth-mobile;
+      }
+    }
+
+    & .textBox {
+      & .text {
+        line-height: $headerHeight-mobile;
+        font-size: $text-font-size-mobile;
+      }
+    }
+  }
 }

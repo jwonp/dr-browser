@@ -25,7 +25,8 @@
   height: Header.$buttonImageWidth-web;
 }
 .name {
-  font-size: 18px;
+  word-break: keep-all;
+  font-size: Header.$name-font-size-web;
   color: white;
   line-height: Header.$buttonImageWidth-web;
 }
@@ -56,8 +57,7 @@
     height: Header.$buttonImageWidth-tablet;
   }
   .name {
-    font-size: 16px;
-    color: white;
+    font-size: Header.$name-font-size-tablet;
     line-height: Header.$buttonImageWidth-tablet;
   }
   .logo {
@@ -85,8 +85,7 @@
     height: Header.$buttonImageWidth-mobile;
   }
   .name {
-    font-size: 14px;
-    color: white;
+    font-size: Header.$name-font-size-mobile;
     line-height: Header.$buttonImageWidth-mobile;
   }
   .logo {

@@ -14,11 +14,12 @@ $logo-font-size-tablet: 28px;
   left: 0;
   width: 100vw;
   height: 100vh;
+  padding: 0 360px;
   background-color: rgba(215, 192, 174, 0.7);
   overflow: hidden;
 }
 .modalContainer {
-  margin: 10% auto;
+  margin: 10% 78px;
   width: global.$media-max-width-tablet;
   height: 100vh;
 }

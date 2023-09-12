@@ -80,4 +80,28 @@
 
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
+  .wrapper {
+    padding: 0 4.44%;
+  }
+  .container {
+    grid-template-rows: 30px 1fr 90px;
+
+    border-radius: 20px;
+    min-height: 600px;
+    background-color: MainColor.$color-967E76;
+    margin-bottom: 5%;
+    padding: 3% 0;
+    & .title {
+      color: white;
+      font-size: 26px;
+      text-align: center;
+    }
+    & .main {
+      & .mainContainer {
+        & > div {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    }
+  }
 }
