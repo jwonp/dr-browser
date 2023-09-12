@@ -11,7 +11,7 @@ import { turnOn } from "@/redux/featrues/drawerSwitchSlice";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { requsetWithJWT } from "@/util/request";
-import { getUserIdByJWT } from "@/util/JwtParser";
+import { getUserIdByJWT, getUsernameByJWT } from "@/util/JwtParser";
 import { usePathname, useRouter } from "next/navigation";
 const HeaderWrapper = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ const HeaderWrapper = () => {
     }
   }, [pathname]);
   useEffect(() => {
-    setUsername(getUserIdByJWT(jwt));
+    setUsername(getUsernameByJWT(jwt));
   }, [jwt]);
   useEffect(() => {
     if (!tokenSWR || !tokenSWR.data) {
@@ -48,7 +48,7 @@ const HeaderWrapper = () => {
   };
   return (
     <div className={styles.container}>
-      {username === process.env.NEXT_PUBLIC_ADMIN ? (
+      {getUserIdByJWT(jwt) === process.env.NEXT_PUBLIC_ADMIN ? (
         <div
           className={styles.buttonCard}
           onClick={() => {
