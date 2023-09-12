@@ -9,7 +9,7 @@ import useSWR from "swr";
 import { useEffect, useMemo, useState } from "react";
 import DataCard, { EmptyBox } from "@/assets/DataCard/DataCard";
 import { requsetWithJWT } from "@/util/request";
-import { getUsernameByJWT } from "@/util/JwtParser";
+import { getUserIdByJWT } from "@/util/JwtParser";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -23,14 +23,14 @@ export default function Home() {
     }
   }, []);
   useEffect(() => {
-    const username = getUsernameByJWT(jwt);
+    const username = getUserIdByJWT(jwt);
     if (username === process.env.NEXT_PUBLIC_ADMIN) {
       router.push("/admin");
     }
   }, [jwt]);
 
   const CardOnIndexSWR = useSWR(
-    jwt ? `/api/card/index?id=${getUsernameByJWT(jwt)}` : null,
+    jwt ? `/api/card/index?id=${getUserIdByJWT(jwt)}` : null,
     (url: string) =>
       requsetWithJWT(jwt)
         .get(url)
@@ -38,13 +38,12 @@ export default function Home() {
     { refreshInterval: 0, shouldRetryOnError: false }
   );
 
-  
   const IndexCards = useMemo(() => {
-    if (
+    const isExistCardSWR =
       !CardOnIndexSWR ||
       !CardOnIndexSWR.data ||
-      CardOnIndexSWR.data.length === 0
-    ) {
+      CardOnIndexSWR.data.length === 0;
+    if (isExistCardSWR) {
       return (
         <DataCard hasHoverEvent={false}>
           <EmptyBox>예약되어 있는 카드가 없습니다</EmptyBox>
