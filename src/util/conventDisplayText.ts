@@ -1,6 +1,6 @@
 export const getDateDisplayText = (lastTagged: string) => {
   if (!lastTagged) {
-    return "";
+    return null;
   }
   return rewriteLastTagged(lastTagged);
 };
