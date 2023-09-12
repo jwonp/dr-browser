@@ -1,9 +1,9 @@
 import { ReservationDetail } from "@/app/reservation/page";
 import { HEADER_AUTHORIZATION, requsetWithJWT } from "@/util/request";
 import { AxiosError, AxiosResponse } from "axios";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
   const data = await request.json();
   const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
   return await requsetWithJWT(jwt)
@@ -17,7 +17,7 @@ export async function POST(request: NextResponse) {
     });
 }
 
-export async function DELETE(request: NextResponse) {
+export async function DELETE(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const requestId = searchParams.get("id");
   const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
