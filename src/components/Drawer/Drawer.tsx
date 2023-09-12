@@ -16,8 +16,6 @@ import TagLogImageSource from "@public/log-white.png";
 
 import { ID } from "@/app/admin/page";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-import { getUsernameByJWT } from "@/util/JwtParser";
 
 const DrawerWrapper = () => {
   const pathname = usePathname();
@@ -46,16 +44,6 @@ const DrawerWrapper = () => {
       text: "예약",
     },
     { href: `/admin#${ID.tagLog}`, imageSrc: TagLogImageSource, text: "로그" },
-    {
-      href: "/",
-      imageSrc: LogoutImageSource,
-      text: "로그아웃",
-      onClick: (e) => {
-        window.localStorage.removeItem("jwt");
-
-        dispatch(turnOff());
-      },
-    },
   ];
 
   const DrawerButtons = admin.map((item, index) => (
@@ -91,7 +79,6 @@ const DrawerWrapper = () => {
             />
           </div>
         </div>
-
 
         {DrawerButtons}
       </div>
