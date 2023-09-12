@@ -15,14 +15,21 @@ export async function GET(request: Request) {
       return NextResponse.json([]);
     });
 }
+
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
   const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
   const deleteId = searchParams.get("id");
-  return await requsetWithJWT(jwt).delete(
-    `${process.env.BACKEND_ENDPOINT}/reservation/admin`,
-    { data: { idList: [deleteId] } }
-  );
+  return await requsetWithJWT(jwt)
+    .delete(`${process.env.BACKEND_ENDPOINT}/reservation/admin`, {
+      data: { idList: [deleteId] },
+    })
+    .then((res) => {
+      NextResponse.json({ isDeleted: true });
+    })
+    .catch((error) => {
+      NextResponse.json({ isDeleted: false });
+    });
 }
 export interface ReservationPatchProps {
   cardId?: string;
@@ -41,9 +48,9 @@ export async function PATCH(request: Request) {
       data
     )
     .then((res) => {
-      return NextResponse.json([...res.data]);
+      return NextResponse.json({ isModified: true });
     })
     .catch((err: AxiosError) => {
-      return NextResponse.json([]);
+      return NextResponse.json({ isModified: false });
     });
 }

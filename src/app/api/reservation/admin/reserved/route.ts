@@ -15,3 +15,20 @@ export async function GET(request: Request) {
       return NextResponse.json([]);
     });
 }
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const requestId = searchParams.get("id");
+  const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
+
+  return await requsetWithJWT(jwt)
+    .delete(`${process.env.BACKEND_ENDPOINT}/reservation/admin/reserved`, {
+      data: { requestId: requestId },
+    })
+    .then((res) => {
+      return NextResponse.json({isDeleted:true});
+    })
+    .catch((err: AxiosError) => {
+      return NextResponse.json({isDeleted:false});
+    });
+}
