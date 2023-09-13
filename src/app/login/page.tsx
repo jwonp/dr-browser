@@ -42,12 +42,13 @@ const LoginWrapper = () => {
     await axios
       .post(`/api/auth/login`, loginData)
       .then((res) => {
-        try {
+        if (Object.keys(res.data).includes("jwt")) {
           window.localStorage.setItem("jwt", res.data.jwt);
-        } catch {
-          console.log("fail to save");
+          router.push("/");
+          return;
         }
-        router.push("/");
+        setNotValidId("아이디 혹은 비밀번호가 올바르지 않습니다");
+        setNotValidPassword("아이디 혹은 비밀번호가 올바르지 않습니다");
       })
       .catch(() => {
         setNotValidId("아이디 혹은 비밀번호가 올바르지 않습니다");
