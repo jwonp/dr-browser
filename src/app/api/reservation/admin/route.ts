@@ -16,19 +16,33 @@ export async function GET(request: Request) {
     });
 }
 
+export async function POST(request: Request) {
+  const reservationData = await request.json();
+  const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
+  console.log(reservationData);
+  return await requsetWithJWT(jwt)
+    .post("/reservation", reservationData)
+    .then((res) => {
+      const isSuccess = Object.keys(res.data).length === 4;
+      return NextResponse.json({ result: isSuccess });
+    })
+    .catch((err) => {
+      return NextResponse.json({ result: false });
+    });
+}
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
   const jwt = request.headers.get(HEADER_AUTHORIZATION).split(" ")[1];
   const deleteId = searchParams.get("id");
   return await requsetWithJWT(jwt)
-    .delete(`${process.env.BACKEND_ENDPOINT}/reservation/admin`, {
+    .delete(`${process.env.BACKEND_ENDPOINT}/reservation`, {
       data: { idList: [deleteId] },
     })
     .then((res) => {
-      NextResponse.json({ isDeleted: true });
+      return NextResponse.json({ isDeleted: true });
     })
     .catch((error) => {
-      NextResponse.json({ isDeleted: false });
+      return NextResponse.json({ isDeleted: false });
     });
 }
 export interface ReservationPatchProps {
