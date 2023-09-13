@@ -1,9 +1,9 @@
-
 import styles from "./CardContainer.module.scss";
 interface CardContainerProps {
   id?: string;
   title: string;
   isWrappeed?: boolean;
+  isButtonsParallel?: boolean;
   tab?: number;
   children: JSX.Element | JSX.Element[];
   buttons: JSX.Element | JSX.Element[];
@@ -13,6 +13,7 @@ const CardContainer = ({
   isWrappeed,
   title,
   buttons,
+  isButtonsParallel,
   tab,
   children,
 }: CardContainerProps) => {
@@ -30,7 +31,9 @@ const CardContainer = ({
         <div className={styles.main}>
           <div className={styles.mainContainer}>{children}</div>
         </div>
-        <div className={styles.buttonContainer}>{buttons}</div>
+        <div className={isButtonsParallel ? styles.buttonContainer : undefined}>
+          {buttons}
+        </div>
       </div>
     </div>
   );
