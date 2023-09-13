@@ -34,7 +34,9 @@ const CardSelectWrapper = () => {
   );
 
   const Cards = useMemo(() => {
-    if (!dataSWR || !dataSWR.data || dataSWR?.data?.length === 0) {
+    const isExistDataSWR =
+      !dataSWR || !dataSWR.data || dataSWR?.data?.length === 0;
+    if (isExistDataSWR) {
       return [
         <DataCard
           key={0}
