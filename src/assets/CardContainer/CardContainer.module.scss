@@ -31,6 +31,10 @@
     }
   }
 }
+.buttonContainer {
+  display: flex;
+  gap: 3%;
+}
 @media all and (min-width: 800px) and (max-width: 1200px) {
   .container {
     & .main {
