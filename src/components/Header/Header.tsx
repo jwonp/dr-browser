@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./Header.module.scss";
 import DrawerSwitchImageSource from "@public/drawer-switch-white.png";
+import ReservationImageSource from "@public/reserve-white.png";
 import LoginImageSource from "@public/login-white.svg";
 import LogoutImageSource from "@public/logout-white.svg";
 import useSWR from "swr";
@@ -69,26 +70,38 @@ const HeaderWrapper = () => {
       <div className={styles.logo}>
         <Link href={"/"}>DoorLock</Link>
       </div>
-      <div className={styles.buttonCard}>
-        {jwt ? (
-          <div onClick={logout}>
+      <div className={styles.buttonContainer}>
+        <div className={styles.buttonCard}>
+          <Link href={"/admin/reservation"}>
             <Image
               className={styles.buttonImage}
-              src={LogoutImageSource}
-              alt={""}
-              priority={true}
-            />
-          </div>
-        ) : (
-          <Link href={"/login"}>
-            <Image
-              className={styles.buttonImage}
-              src={LoginImageSource}
+              src={ReservationImageSource}
               alt={""}
               priority={true}
             />
           </Link>
-        )}
+        </div>
+        <div className={styles.buttonCard}>
+          {jwt ? (
+            <div onClick={logout}>
+              <Image
+                className={styles.buttonImage}
+                src={LogoutImageSource}
+                alt={""}
+                priority={true}
+              />
+            </div>
+          ) : (
+            <Link href={"/login"}>
+              <Image
+                className={styles.buttonImage}
+                src={LoginImageSource}
+                alt={""}
+                priority={true}
+              />
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

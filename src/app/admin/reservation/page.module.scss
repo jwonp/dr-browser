@@ -1,0 +1,32 @@
+@use "../../../scss/MainColor.scss" as MainColor;
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gridBox {
+  height: 600px;
+  & .text {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+.resultBox {
+  height: 600px;
+  display: flex;
+  & > div {
+    margin: auto 0;
+  }
+}
+.selectBox {
+  height: 600px;
+  overflow-y: scroll;
+  & > div {
+    margin-bottom: 2%;
+  }
+}
+
+.selectCard {
+  cursor: pointer;
+}

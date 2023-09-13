@@ -8,11 +8,13 @@
   border-bottom: 1px solid MainColor.$color-D7C0AE;
   background-color: MainColor.$color-967E76;
   display: grid;
-  grid-template-columns: Header.$buttonCardWidth-web 1fr Header.$buttonCardWidth-web;
+  grid-template-columns: Header.$buttonCardWidth-web * 2 1fr Header.$buttonCardWidth-web * 2;
   height: Header.$headerHeight-web;
   z-index: 10000;
 }
-
+.buttonContainer {
+  display: flex;
+}
 .buttonCard {
   width: Header.$buttonCardWidth-web;
   height: Header.$headerHeight-web;
