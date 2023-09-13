@@ -48,7 +48,7 @@ const ReserveRequestCard = ({ item }: ReserveRequestCardProps) => {
     <DataCard
       hasHoverEvent={true}
       onHoverButtons={onHoverButtons}>
-      <Title>{`예약 ID # ${item.reservationId}`}</Title>
+      <Title>{`예약 번호 # ${item.reservationId}`}</Title>
       <MiddleTextBox>
         <MiddleText>{`${item.name}(${item.userId})`}</MiddleText>
         <MiddleText>{item.phone}</MiddleText>

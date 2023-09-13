@@ -39,7 +39,12 @@ const RoomDetailCard = ({ item, onHoverButtons }: RoomDetailCardProps) => {
         {item.reservations.map((reservation, index) => (
           <ReservationTextBox key={index}>
             <ReservationText>{`예약 번호 # ${reservation.reservationId}`}</ReservationText>
-            <ReservationText>{`${reservation.name}(${reservation.userId})`}</ReservationText>
+            {reservation.userId.length > 0 ? (
+              <ReservationText>{`${reservation.name}(${reservation.userId})`}</ReservationText>
+            ) : (
+              <ReservationText>{""}</ReservationText>
+            )}
+
             <ReservationText>{reservation.phone}</ReservationText>
             <ReservationText>{`카드 ID # ${reservation.cardId}`}</ReservationText>
           </ReservationTextBox>
