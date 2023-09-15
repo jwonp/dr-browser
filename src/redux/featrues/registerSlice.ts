@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-type RegisterState = {
+export type RegisterState = {
   id: string;
   name: string;
   phone: string;
