@@ -25,10 +25,18 @@ const HeaderWrapper = () => {
       .get(url)
       .then((res) => res.data)
   );
+  const isAdmin = useSWR(jwt ? "/api/auth/admin" : null, (url: string) =>
+    requsetWithJWT(jwt)
+      .get(url)
+      .then((res) => res.data)
+  );
+
   useEffect(() => {
     const jwt = window.localStorage.getItem("jwt");
     if (jwt) {
       setJwt(jwt);
+    } else {
+      setJwt(undefined);
     }
   }, [pathname]);
   useEffect(() => {
@@ -71,16 +79,20 @@ const HeaderWrapper = () => {
         <Link href={"/"}>DoorLock</Link>
       </div>
       <div className={styles.buttonContainer}>
-        <div className={styles.buttonCard}>
-          <Link href={"/admin/reservation"}>
-            <Image
-              className={styles.buttonImage}
-              src={ReservationImageSource}
-              alt={""}
-              priority={true}
-            />
-          </Link>
-        </div>
+        {jwt && !isAdmin.error ? (
+          <div className={styles.buttonCard}>
+            <Link href={"/admin/reservation"}>
+              <Image
+                className={styles.buttonImage}
+                src={ReservationImageSource}
+                alt={""}
+                priority={true}
+              />
+            </Link>
+          </div>
+        ) : (
+          <div className={styles.buttonCard}></div>
+        )}
         <div className={styles.buttonCard}>
           {jwt ? (
             <div onClick={logout}>
