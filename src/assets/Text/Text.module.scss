@@ -85,7 +85,9 @@ $padding-left-mobile: 1em;
     height: $height-tablet;
     font-size: $font-size-tablet;
   }
-
+  .notValid {
+    font-size: 11px;
+  }
   .noEditable {
     font-size: $font-size-tablet;
     padding-left: $padding-left-tablet;
@@ -110,7 +112,9 @@ $padding-left-mobile: 1em;
     height: $height-mobile;
     font-size: $font-size-mobile;
   }
-
+  .notValid {
+    font-size: 9px;
+  }
   .noEditable {
     font-size: $font-size-mobile;
     padding-left: $padding-left-mobile;
