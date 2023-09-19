@@ -9,6 +9,7 @@
   background-color: MainColor.$color-967E76;
   display: grid;
   grid-template-columns: Header.$buttonCardWidth-web * 2 1fr Header.$buttonCardWidth-web * 2;
+  width: 100vw;
   height: Header.$headerHeight-web;
   z-index: 10000;
 }
@@ -43,7 +44,7 @@
 /* 테블릿 세로 */
 @media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
   .container {
-    grid-template-columns: Header.$buttonCardWidth-tablet 1fr Header.$buttonCardWidth-tablet;
+    grid-template-columns: Header.$buttonCardWidth-tablet * 2 1fr Header.$buttonCardWidth-tablet * 2;
     height: Header.$headerHeight-tablet;
   }
 
@@ -71,7 +72,7 @@
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
   .container {
-    grid-template-columns: Header.$buttonCardWidth-mobile 1fr Header.$buttonCardWidth-mobile;
+    grid-template-columns: Header.$buttonCardWidth-mobile * 2 1fr Header.$buttonCardWidth-mobile * 2;
     height: Header.$headerHeight-mobile;
   }
 

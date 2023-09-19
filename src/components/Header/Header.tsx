@@ -79,7 +79,7 @@ const HeaderWrapper = () => {
         <Link href={"/"}>DoorLock</Link>
       </div>
       <div className={styles.buttonContainer}>
-        {jwt && !isAdmin.error ? (
+        {jwt && isAdmin.data && isAdmin.data.result === true ? (
           <div className={styles.buttonCard}>
             <Link href={"/admin/reservation"}>
               <Image
