@@ -17,8 +17,10 @@ import CardDetailCard, {
   CardDetailCardItem,
 } from "@/assets/DataCard/templates/CardDetailCard/CardDetailCard";
 import { ReservationPatchProps } from "@/app/api/reservation/admin/route";
+import { useRouter } from "next/navigation";
 
 const CardSelectWrapper = () => {
+  const router = useRouter();
   const reservationEditState = useAppSelector(getReservationEditState);
   const isVisible = useAppSelector(getEditModalVisible);
   const dispatch = useAppDispatch();
@@ -77,7 +79,7 @@ const CardSelectWrapper = () => {
         );
       });
   }, [dataSWR, dataSWR.data]);
-
+  
   return (
     <div
       className={
@@ -87,7 +89,10 @@ const CardSelectWrapper = () => {
       }>
       <CardContainer
         title={"변경할 카드를 선택하세요"}
-        buttons={[]}>
+        buttons={[]}
+        onClick={() => {
+          dispatch(setInvisible());
+        }}>
         <Grid grid={3}>{Cards}</Grid>
       </CardContainer>
     </div>

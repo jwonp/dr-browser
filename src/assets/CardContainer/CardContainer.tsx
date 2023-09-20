@@ -7,6 +7,7 @@ interface CardContainerProps {
   tab?: number;
   children: JSX.Element | JSX.Element[];
   buttons: JSX.Element | JSX.Element[];
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 const CardContainer = ({
   id,
@@ -16,6 +17,7 @@ const CardContainer = ({
   isButtonsParallel,
   tab,
   children,
+  onClick,
 }: CardContainerProps) => {
   return (
     <div
@@ -26,7 +28,8 @@ const CardContainer = ({
         style={{
           paddingLeft: `${tab * 5.3125}%`,
           paddingRight: `${tab * 5.3125}%`,
-        }}>
+        }}
+        onClick={onClick}>
         <div className={styles.title}>{title}</div>
         <div className={styles.main}>
           <div className={styles.mainContainer}>{children}</div>
@@ -51,6 +54,7 @@ export const Grid = ({ grid, children }: GridProps) => {
   };
   return (
     <div
+      className={styles.grid}
       style={{ display: "grid", gridTemplateColumns: getGrid(), gap: "1em" }}>
       {children}
     </div>

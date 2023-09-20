@@ -83,7 +83,10 @@ const UserSelectWrapper = () => {
       }>
       <CardContainer
         title={"변경할 유저를 선택하세요"}
-        buttons={[]}>
+        buttons={[]}
+        onClick={() => {
+          dispatch(setInvisible());
+        }}>
         <Grid grid={3}>{Cards}</Grid>
       </CardContainer>
     </div>

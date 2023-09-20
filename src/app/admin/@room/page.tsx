@@ -83,7 +83,10 @@ const RoomSelectWrapper = () => {
       }>
       <CardContainer
         title={"변경할 방을 선택하세요"}
-        buttons={[]}>
+        buttons={[]}
+        onClick={() => {
+          dispatch(setInvisible());
+        }}>
         <Grid grid={3}>{Cards}</Grid>
       </CardContainer>
     </div>
