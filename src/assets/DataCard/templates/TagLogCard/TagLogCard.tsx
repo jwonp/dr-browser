@@ -26,7 +26,9 @@ const TagLogCard = ({ item }: TagLogCardProps) => {
     <DataCard hasHoverEvent={false}>
       <Title>{`로그 # ${item.logId}`}</Title>
       <MiddleTextBox>
-        <MiddleText>{item.result}</MiddleText>
+        <MiddleText>
+          {item.result.split(".").length > 2 ? ADMIN : item.result}
+        </MiddleText>
         <MiddleText>{`카드 ID # ${item.cardId}`}</MiddleText>
       </MiddleTextBox>
       <BottomRightTextBox>
