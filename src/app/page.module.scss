@@ -6,8 +6,7 @@
   min-height: 100%;
 }
 
-.CardContainer {
-  overflow-x: scroll !important;
+.card {
   padding: 1% 18.75%;
   padding-bottom: 2%;
   position: relative;
@@ -16,22 +15,36 @@
 
 /* 테블릿 세로 */
 @media all and (min-width: global.$media-min-width-tablet) and (max-width: global.$media-max-width-tablet) {
-  .CardContainer {
+  .wrapper {
+    overflow-x: hidden;
+  }
+  .main {
+    overflow-x: hidden;
+  }
+  .card {
     padding: 2% 3.125%;
     & > div {
       display: grid;
-      grid-template-columns: 1fr 1fr !important;
+      // grid-template-columns: 1fr 1fr !important;
     }
   }
 }
 
 /* 모바일 */
 @media all and (max-width: global.$media-max-width-mobile) {
-  .CardContainer {
+  .wrapper {
+    overflow-x: hidden;
+  }
+  .main {
+    overflow-x: hidden;
+  }
+  .card {
     padding: 2% 3.125%;
     & > div {
-      display: grid;
-      grid-template-columns: 1fr !important;
+      // grid-template-columns: 1fr !important;
+      & > div {
+        margin: 0 auto;
+      }
     }
   }
 }

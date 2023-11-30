@@ -89,7 +89,7 @@ export default function Home() {
     <div className={styles.wrapper}>
       <div className={styles.main}>
         <BannerImage />
-        <div className={styles.CardContainer}>
+        <div className={styles.card}>
           <Grid grid={3}>{IndexCards}</Grid>
         </div>
       </div>
