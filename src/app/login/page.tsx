@@ -68,7 +68,7 @@ const LoginWrapper = () => {
             <>
               <Button onClick={onSubmit}>로그인</Button>
               <div className={styles.registerLink}>
-                <Link href={"/register"}>{"회원가입"}</Link>
+                <Link href={"/register"}>회원가입</Link>
               </div>
             </>
           }
