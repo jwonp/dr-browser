@@ -31,7 +31,10 @@ import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import DataCard, { EmptyBox } from "@/assets/DataCard/DataCard";
 import { useAppSelector } from "@/redux/hooks";
-import { getReservationEditState } from "@/redux/featrues/reservationEditSlice";
+import {
+  getEditModalVisible,
+  getReservationEditState,
+} from "@/redux/featrues/reservationEditSlice";
 import Provider from "@/redux/Provider";
 export const ID = {
   lost: "lost",
@@ -45,6 +48,7 @@ export const ID = {
 };
 const AdminWrapper = ({ jwt }: { jwt: string }) => {
   const reservationEditState = useAppSelector(getReservationEditState);
+  const isModalVisible = useAppSelector(getEditModalVisible);
   const lostCardSWR = useSWR(
     "/api/card/admin/lost",
     (url: string): Promise<LostCardItem[]> =>
@@ -223,6 +227,9 @@ const AdminWrapper = ({ jwt }: { jwt: string }) => {
       reservationSWR.mutate();
     }
   }, [reservationEditState.selectedReservationId]);
+  useEffect(() => {
+    reservationSWR.mutate();
+  }, [isModalVisible]);
   const ReservationCards = useMemo(() => {
     if (
       !reservationSWR ||
